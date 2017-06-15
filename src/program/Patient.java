@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasa, za pomoc¹ której m¿na uzupe³niæ danae pacjenta
+ * Klasa, za pomoc¹ której mo¿na uzupe³niæ dane pacjenta
  * @author Adam Kopuœciñski ,Rados³aw Bu³a
  */
 public class Patient {
@@ -20,23 +20,20 @@ private String sex;
 private List<Examination> examinationsList;
 /** Wystêpowanie wyników badania*/
 private boolean isExamination;
-
-
+/** ID */
 private int id;
 
+/** Konstruktor bezparametrowy*/
+public Patient(){}
+
 /**
- * Metoda umo¿liwiaj¹ca wype³nienie danych pacjnta
+ * Konstruktor umo¿liwiaj¹cy wype³nienie danych pacjnta
  * @param firstName Imiê
  * @param surname Nazwisko
  * @param pesel Pesel
  * @param sex P³eæ
  * @param isExamination  Wystêpowanie wyników badania
- * @param examination Wyniki badania
  */
-
-public Patient(){}
-
-
 public Patient(String firstName, String surname, String pesel, String sex, boolean isExamination) {
 	this.setFirstName(firstName);
 	this.setSurname(surname);
@@ -46,6 +43,15 @@ public Patient(String firstName, String surname, String pesel, String sex, boole
 	this.examinationsList = new ArrayList<Examination>();
 }
 
+/**
+ * Metoda umo¿liwiaj¹ca wype³nienie danych pacjnta
+ * @param id ID
+ * @param firstName Imiê
+ * @param surname Nazwisko
+ * @param pesel Pesel
+ * @param sex P³eæ
+ * @param isExamination  Wystêpowanie wyników badania
+ */
 public Patient(int id, String firstName, String surname, String pesel, String sex, boolean isExamination) {
 	this.setId(id);
 	this.setFirstName(firstName);
@@ -58,12 +64,17 @@ public Patient(int id, String firstName, String surname, String pesel, String se
 
 
 
-
-
+/**
+ * Metoda zwracj¹ca ID
+ * @return ID 
+ */ 
 public int getId() {
 	return id;
 }
-
+/**
+ * Metoda ustawiaj¹ca ID
+ * @param id ID
+ */ 
 public void setId(int id) {
 	this.id = id;
 }
@@ -156,11 +167,17 @@ public boolean isExamination() {
 public void setExamination(boolean isExamination) {
 	this.isExamination = isExamination;
 }
-
+/**
+ * Metoda zwracaj¹ca listê badañ
+ * @return lista badañ
+ */
 public List<Examination> getExaminationsList() {
 	return examinationsList;
 }
-
+/**
+ * Metoda ustawiaj¹caiaj¹ca listê badañ
+ * @param examinationsList lista badañ
+ */
 public void setExaminationsList(List<Examination> examinationsList) {
 	this.examinationsList = examinationsList;
 }

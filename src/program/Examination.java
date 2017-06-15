@@ -7,24 +7,18 @@ import java.util.Date;
  * @author Adam Kapuœciñski, Rados³aw Bu³a
  */
 public class Examination {
-/** Ciœnienie krwi*/
+/** Zmienna Ciœnienie krwi*/
 private String bloodPressure="";
-/** Têtno*/
+/** Zmienna Têtno*/
 private int heartRate;
-/** Data*/
+/** Zmienna Data*/
 private Date date;
-
-/** Data*/
+/** Zmmienna w której przechowywana jest data badania */
 private String dateString;
-
-
-private String hour;
-
-
+/** Zmmienna identyfikuj¹cy pacjenta*/
 private int ID_PACJENTA;
-
+/** Zmmienna identyfikuj¹cy badanie*/
 private int ID;
-
 
 /**
  * Metoda wygenerowana automatycznie
@@ -37,6 +31,7 @@ private int ID;
 	 * @param date Data
 	 * @param bloodpressure Ciœnienie krwi
 	 * @param heartRate Têtno
+	 * @param ID_PACJENTA Numer identyfikuj¹cy pacjenta
 	 */
 	public Examination(String date, String bloodpressure, int heartRate, int ID_PACJENTA){
 		this.setDateString(date);
@@ -45,7 +40,14 @@ private int ID;
 		this.setID_PACJENTA(ID_PACJENTA);
 		
 	}
-	
+	/**
+	 * Metoda, za pomoc¹ której uzupe³niane jest badanie pacjenta
+	 * @param date Data
+	 * @param bloodpressure Ciœnienie krwi
+	 * @param heartRate Têtno
+	 * @param id Numer identyfikuj¹cy pacjenta
+	 * @param ID_PACJENTA Numer identyfikuj¹cy pacjenta
+	 */
 	public Examination(int id, String date, String bloodpressure, int heartRate, int ID_PACJENTA){
 		this.setID(id);
 		this.setDateString(date);
@@ -54,25 +56,7 @@ private int ID;
 		this.setID_PACJENTA(ID_PACJENTA);
 		
 	}
-	
-	public Examination(String date,String hour, String bloodpressure, int heartRate, int ID_PACJENTA){
-		
-		this.setDateString(date);
-		this.setbloodPressure(bloodpressure);
-		this.setheartRate(heartRate);
-		this.setID_PACJENTA(ID_PACJENTA);
-		
-	}
-	public Examination(int id, String date,String hour, String bloodpressure, int heartRate, int ID_PACJENTA){
-		this.setID(id);
-		this.setHour(hour);
-		this.setDateString(date);
-		this.setbloodPressure(bloodpressure);
-		this.setheartRate(heartRate);
-		this.setID_PACJENTA(ID_PACJENTA);
-		
-	}
-	
+
 /**
  * Metoda, za pomoc¹ której uzupe³niamy tabelê
  * @return Tablica z danymi pacjentów
@@ -81,8 +65,6 @@ public Object[] toTable(){
 	Object[] tablica = {getDateString(), getbloodPressure(), getheartRate(), getID()};
 	return tablica;
 }
-	
-
 /**
  * Metoda zwracj¹ca ciœnienie krwi
  * @return Ciœnienie krwi
@@ -97,7 +79,6 @@ public String getbloodPressure() {
 public void setbloodPressure(String bloodPressure) {
 	this.bloodPressure = bloodPressure;
 }
-
 /**
  * Metoda zwracj¹ca Têtno
  * @return Têtno
@@ -119,38 +100,48 @@ public void setheartRate(int heartRate) {
 public Date getDate() {
 	return date;
 }
+
 /**
- * Metoda ustawiaj¹ca datê
- * @param date Data
+ * Metoda zwracaj¹ca datê
+ * @return dateString Data
  */
-public void setDate(Date date) {
-	this.date = date;
-}
 public String getDateString() {
 	return dateString;
 }
+/**
+ * Metoda ustawiaj¹ca datê
+ * @param dateString Data
+ */
 public void setDateString(String dateString) {
 	this.dateString = dateString;
 }
+/**
+ * Metoda zwracaj¹ca ID pacjenta
+ * @return ID_PACJENTA ID pacjenta
+ */
 public int getID_PACJENTA() {
 	return ID_PACJENTA;
 }
+/**
+ * Metoda ustawiaj¹ca ID pacjenta
+ * @param iD_PACJENTA ID pacjenta
+ */
 public void setID_PACJENTA(int iD_PACJENTA) {
 	ID_PACJENTA = iD_PACJENTA;
 }
+/**
+ * Metoda zwracaj¹ca ID badania
+ * @return iD ID badania
+ */
 public int getID() {
 	return ID;
 }
+/**
+ * Metoda ustawiaj¹ca ID badania
+ * @param iD ID badania
+ */
 public void setID(int iD) {
 	ID = iD;
 }
-public String getHour() {
-	return hour;
-}
-public void setHour(String hour) {
-	this.hour = hour;
-}
-	
-	
-	
+
 }

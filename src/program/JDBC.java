@@ -11,8 +11,7 @@ import java.util.List;
 
 /**
  * Klasa sluzaca do polaczenia z lokalna baza danych w ktorej przechowywane sa informacje o pacjentach i badaniach
- * @authors 
- *
+ *  @author Adam Kapuœciñski, Rados³aw Bu³a
  */
 public class JDBC {
 	/**
@@ -117,7 +116,7 @@ public class JDBC {
 	
 	/**
 	 * Metoda pozwalajaca na dodanie nowego pacjenta do bazy danych
-	 * @param patient
+	 * @param patient pacjent
 	 */
 	public void insertPatient(Patient patient){
 		try {
@@ -141,8 +140,8 @@ public class JDBC {
 	
 	/**
 	 * Metoda pozwalajaca na dodanie dodanie badania do okreslonego pacjenta
-	 * @param patient
-	 * @param examination
+	 * @param patient pacjent
+	 * @param examination badanie
 	 */
 	public void insertExamination(Patient patient, Examination examination) {
 		try {
@@ -171,7 +170,7 @@ public class JDBC {
 	
 	/**
 	 * Metoda pozwalajaca na usuniecie pacjenta z bazy danych
-	 * @param patient
+	 * @param patient pacjent
 	 */
 	public void removePatient(Patient patient){
 		try {
@@ -187,7 +186,7 @@ public class JDBC {
 	
 	/**
 	 * Metoda pozwalajaca na pobranie wszystkich rekordow z tabeli pacjentow
-	 * @return
+	 * @return lista pacjentów
 	 */
 	public List<Patient> selectAllPatients(){
 		List<Patient> patientsList = null;
@@ -206,36 +205,10 @@ public class JDBC {
 		return patientsList;
 	}
 	
-	/**
-	 * Metoda pozwalajca na pobranie informacji o wybranym pacjencie (zaklada, ze numer pesel jest unikalny dla kazdego pacjenta)
-	 * @param pesel
-	 * @return
-	 */
-//	public Patient selectPatient(long pesel){
-//		Patient patient = null;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM " + patientsTableName + " "
-//					+ "WHERE PESEL=?;");
-//			preparedStatement.setLong(1, pesel);
-//			
-//			ResultSet resultSet = preparedStatement.executeQuery();
-//			
-//			boolean examinated = false;
-//			if (resultSet.getInt(7) > 0) {
-//				examinated = true;
-//			}
-//			patient = new Patient(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), pesel, 
-//					resultSet.getString(5), resultSet.getString(6), examinated);
-//			patient.setExamination(selectExamination(resultSet.getInt(7)));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return patient;
-//	}
 	
 	/**
 	 * Metoda pozwalajaca na aktualizacje informacji o pacjencie
-	 * @param patient
+	 * @param patient pacjent
 	 */
 	public void updatePatient(Patient patient) {
 		try {
@@ -257,49 +230,12 @@ public class JDBC {
 		}
 	}
 	
-	/**
-	 * Metoda pozwalajaca na pobranie id badania przypisane do danego pacjenta
-	 * @param patient
-	 * @return
-	 */
-	/*public int getPatientsExaminationId(Patient patient) {
-		int examinationId = 0;
-		try {
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT ID_BADANIA FROM "
-					+ patientsTableName + " WHERE ID_PACJENTA=?;");
-			preparedStatement.setInt(1, patient.getId());
-			ResultSet resultSet = preparedStatement.executeQuery();
-			examinationId = resultSet.getInt(1);
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		} 
-		return examinationId;
-	}
-	*/
-	/**
-	 * Metoda pozwalajaca na pobranie informacji o danym badaniu
-	 * @param examinationId
-	 * @return
-	 */
-	/*public Examination selectExamination(int examinationId) {
-		Examination examination = null;
-		try {
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM " + examinationsTableName + " "
-					+ "WHERE ID_BADANIA=?;");
-			preparedStatement.setInt(1, examinationId);
-			
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			examination = new Examination(resultSet.getString(2), 
-					resultSet.getInt(3), 
-					resultSet.getDouble(4), 
-					resultSet.getDouble(5));
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		} 
-		return examination;
-	}*/
 	
+	/**
+	 * Metoda pozwalajaca na pobranie wszystkich rekordow z tabeli badañ
+	 * @param patient pacjent
+	 * @return lista pacjentów
+	 */
 	public List<Examination> selectExaminations(Patient patient) {
 		List<Examination> examinationsList = new ArrayList<Examination>();
 		try {
@@ -324,15 +260,9 @@ public class JDBC {
 		return examinationsList;
 	}
 	
-	
-	
-	
-	
-
 	/**
 	 * Metoda pozwalajaca na uaktualnienie informacji o badaniu
-	 * @param examination
-	 * @param examinationId
+	 * @param examination badanie
 	 */
 	public void updateExamination(Examination examination) {
 		try {
@@ -351,7 +281,10 @@ public class JDBC {
 		}
 	}
 	
-	
+	/**
+	 * Metoda pozwalajaca na usuniêcie badania
+	 * @param examination badanie
+	 */
 	public void removeExamination(Examination examination){
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM " + examinationsTableName + " "
